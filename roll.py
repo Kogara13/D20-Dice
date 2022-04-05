@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
-import random 
+import sys 
+import random
 
 #Change the color of the dice by changing the text at the beginning of the print statements
 # \033[1;30m (Black)
@@ -12,10 +13,55 @@ import random
 
 #For additional formating options, see: https://stackabuse.com/how-to-print-colored-text-in-python/
 
-Rn = random.randint(1,20)
-#Account for single and double digit numbers moving parts of the dice
-if Rn > 9:
-    print("""\033[1;32m             
+def roll4():
+    Rn = random.randint(1,4)
+    print("""\033[1;32m
+          ;;
+        ,;  ;,
+       ,;    ;,
+      ,;      ;,
+     ,;        ;,
+    ,;          ;, 
+   ,;            ;,
+  ,;              ;,
+ ,;                ;, 
+,;        {}         ;,
+::::::::::::::::::::::
+    """.format(Rn))
+
+def roll6():
+    Rn = random.randint(1,6)
+    print("""\033[1;32m
+ ::::::::::::::
+ ::          ::  
+ ::          ::
+ ::    {}     ::
+ ::          ::
+ ::          ::                
+ :::::::::::::: 
+
+    """.format(Rn))
+
+def double6():
+    Rn = random.randint(1,6)
+    Rm = random.randint(1,6)
+    print("""\033[1;32m
+ ::::::::::::::   ::::::::::::::
+ ::          ::   ::          ::
+ ::          ::   ::          ::
+ ::    {}     ::   ::     {}    ::
+ ::          ::   ::          ::
+ ::          ::   ::          ::             
+ ::::::::::::::   ::::::::::::::
+
+    """.format(Rn, Rm))
+    Rn2 = random.randint(1,6)
+
+def roll20():
+    Rn = random.randint(1,20)
+    #Account for single and double digit numbers moving parts of the dice
+    if Rn > 9:
+        print("""\033[1;32m             
             ,:::,
        ,,,:;  :  ;:,,, 
    ,,,:       :       :,,, 
@@ -31,11 +77,11 @@ if Rn > 9:
 '';'      ;       ;      ';''
    ''';    ;     ;    ;'''         
        ''':;;   ;;:'''
-            ':,:' 
-""".format(Rn))
-    
-else: 
-    print("""\033[1;32m             
+            ':::' 
+    """.format(Rn))
+        
+    else: 
+        print("""\033[1;32m             
             ,:::,
        ,,,:;  :  ;:,,, 
    ,,,:       :       :,,, 
@@ -51,7 +97,19 @@ else:
 '';'      ;       ;      ';''
    ''';    ;     ;    ;'''         
        ''':;;   ;;:'''
-            ':,:' 
-""".format(Rn))
-if Rn == 20:
-    print('NAT 20!')
+            ':::' 
+    """.format(Rn))
+    if Rn == 20:
+        print('NAT 20!')
+
+try:
+    if sys.argv[1] == "-4":
+        roll4()
+    elif sys.argv[1] == "-6":
+        roll6()
+    elif sys.argv[1] == "-d6":
+        double6()
+    elif sys.argv[1] == "-20":
+        roll20()
+except:
+    print('error')
