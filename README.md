@@ -1,5 +1,5 @@
 # ASCII-Dice
-Terminal program to roll different-sided dice via command line input and display the results within ASCII art of their respective dice.
+A terimal-based program to roll different-sided dice via command line input and display the results using ASCII art of their respective dice.
 
 Different command line arguments are used for each dice size:
 
